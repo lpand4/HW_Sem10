@@ -1,5 +1,6 @@
 import logging
-from aiogram import Bot, Dispatcher, executor, types
+import requests
+from aiogram import Bot, Dispatcher, executor, types, utils
 from aiogram.dispatcher.webhook import SendMessage
 from datetime import datetime
 from dataclasses import dataclass
@@ -30,20 +31,12 @@ class Weather:
     wind_speed: float
 
 
-# Открываем ссылку и парсим айпишник и все прилегающее:
-def get_data() -> dict:
-    url = 'http://ipinfo.io/json'
-    data = urlopen(url)
-    return json.load(data)
-
-
 # Перемещаем нужные значения в класс координат
-def get_coordinates() -> Coordinates:
-    data = get_data()
-    latitude = data['loc'].split(',')[0]
-    longitude = data['loc'].split(',')[1]
-    city = data['city']
-    return Coordinates(latitude=latitude, longitude=longitude, city=city)
+def get_keyboard():
+    keyboard = types.ReplyKeyboardMarkup()
+    button = types.KeyboardButton("Share Position", request_location=True)
+    keyboard.add(button)
+    return keyboard
 
 
 def get_data_weather(latitude, longitude):
@@ -53,9 +46,9 @@ def get_data_weather(latitude, longitude):
 
 
 # Перемещаем значения погоды в класс погоды
-def get_weather(coordinates=Coordinates) -> Weather:
-    data_weather_dict = get_data_weather(coordinates.latitude, coordinates.longitude)
-    city1 = coordinates.city
+def get_weather(latitude, longitude) -> Weather:
+    data_weather_dict = get_data_weather(latitude, longitude)
+    city1 = data_weather_dict['name']
     temperatue1 = data_weather_dict['main']['temp']
     temperatue_feeling1 = data_weather_dict['main']['feels_like']
     weather1 = str(data_weather_dict['weather'][0]['description']).capitalize()
@@ -82,25 +75,27 @@ async def start_message(message: types.Message):
     user_message = message.text
     logging.info(f'{datetime.now()} - {user_id}|{user_name} {user_lastname} - {user_message}|{user_bot}')
     await message.reply(f'Hi, {user_name}!')
-    btns = types.ReplyKeyboardMarkup(row_width=1)
-    btn_weather = types.KeyboardButton('/weather')
+    btns = types.ReplyKeyboardMarkup(row_width=3)
+    btn_weather = types.KeyboardButton('/weather', request_location=True)
     btn_film = types.KeyboardButton('/film')
     btn_out = types.KeyboardButton('/quit')
+
     btns.add(btn_weather, btn_film, btn_out)
     await bot.send_message(user_id, 'Выберите что Вас интересует:', reply_markup=btns)
 
 
-@dp.message_handler(commands=['weather'])
+@dp.message_handler(content_types=['location'])
 async def weather_handler(message: types.Message):
-    coordinates = get_coordinates()
+    lat = message.location.latitude
+    long = message.location.longitude
     # noinspection PyTypeChecker
-    weather = get_weather(coordinates)
+    weather = get_weather(latitude=lat, longitude=long)
     message_text = f'Город: {weather.city}\nТемпература воздуха: {weather.temperature}\n' \
                    f'Ощущается как: {weather.temperature_feeling}\nПогода: {weather.weather}\n' \
                    f'Скорость ветра: {weather.wind_speed}\n'
+    logging.info(f'{datetime.now()} - {message_text}')
 
     return SendMessage(message.chat.id, message_text)
-
 
 @dp.message_handler(commands=['film'])
 async def film_handler(message: types.Message):

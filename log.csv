@@ -1,8 +1,33 @@
 INFO:aiogram:Bot: FilmBot [@Filmtowatchweater_bot]
 WARNING:aiogram:Updates were skipped successfully.
 INFO:aiogram.dispatcher.dispatcher:Start polling.
-INFO:root:2023-02-02 13:47:00.744520 - 326934957|Влад None - /start|False
-INFO:root:2023-02-02 13:47:10.288767 - 326934957|Влад None - /start|False
-INFO:root:2023-02-02 13:47:13.294697 - 326934957|Влад None - /start|False
+INFO:root:2023-02-02 21:01:32.414275 - 326934957|Влад None - /start|False
+INFO:root:2023-02-02 21:01:42.606493 - 326934957|Влад None - /start|False
+INFO:aiogram.dispatcher.dispatcher:Stop polling...
+WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: FilmBot [@Filmtowatchweater_bot]
+WARNING:aiogram:Updates were skipped successfully.
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:2023-02-02 21:03:10.463007 - 326934957|Влад None - /start|False
+INFO:root:2023-02-02 21:03:19.908522 - Город: Kurovskoye
+Температура воздуха: -1.07
+Ощущается как: -5.52
+Погода: Light snow
+Скорость ветра: 3.89
+
+INFO:root:2023-02-02 21:09:04.926760 - 899244802|Andrey Polyakov - /start|False
+INFO:root:2023-02-02 21:09:13.667502 - Город: Moscow
+Температура воздуха: -0.74
+Ощущается как: -5.3
+Погода: Overcast clouds
+Скорость ветра: 4.15
+
+INFO:root:2023-02-02 21:12:16.684161 - 742510611|Your Homie - /start|False
+INFO:root:2023-02-02 21:12:31.298834 - Город: Chi\u0219in\u0103u Municipality
+Температура воздуха: -0.34
+Ощущается как: -0.34
+Погода: Clear sky
+Скорость ветра: 0
+
 INFO:aiogram.dispatcher.dispatcher:Stop polling...
 WARNING:aiogram:Goodbye!
