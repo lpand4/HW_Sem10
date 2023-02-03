@@ -31,3 +31,13 @@ INFO:root:2023-02-02 21:12:31.298834 - Город: Chi\u0219in\u0103u Municipality
 
 INFO:aiogram.dispatcher.dispatcher:Stop polling...
 WARNING:aiogram:Goodbye!
+INFO:aiogram:Bot: FilmBot [@Filmtowatchweater_bot]
+WARNING:aiogram:Updates were skipped successfully.
+INFO:aiogram.dispatcher.dispatcher:Start polling.
+INFO:root:2023-02-02 21:26:17.411120 - 326934957|Влад None - /start|False
+INFO:root:2023-02-02 21:27:13.034766 - Город: Kurovskoye
+Температура воздуха: -1.07
+Ощущается как: -5.38
+Погода: Overcast clouds
+Скорость ветра: 3.71
+
