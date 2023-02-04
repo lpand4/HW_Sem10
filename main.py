@@ -93,13 +93,14 @@ async def weather_handler(message: types.Message):
     message_text = f'Город: {weather.city}\nТемпература воздуха: {weather.temperature}\n' \
                    f'Ощущается как: {weather.temperature_feeling}\nПогода: {weather.weather}\n' \
                    f'Скорость ветра: {weather.wind_speed}\n'
-    logging.info(f'{datetime.now()} - {message_text}')
+    logging.info(f'{datetime.now()} - Пользователь {message.from_user.full_name}\n {message_text}')
 
     return SendMessage(message.chat.id, message_text)
 
+
 @dp.message_handler(commands=['film'])
 async def film_handler(message: types.Message):
-    pass
+    return SendMessage(message.chat.id, 'Данная функция находится в процессе разработки')
 
 
 @dp.message_handler(commands=['quit'])
